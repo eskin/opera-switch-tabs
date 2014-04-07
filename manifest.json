@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+
+  "name": "Opera Extensions - Commands API",
+  "description": "Sample extension demonstrating the commands API. Press Ctrl+Shift+Y to open the popup (Command+Shift+Y on Mac). Press Ctrl+Shift+A (Command+Shift+A on Mac) to run a test function which will send an alert message.",
+  "version": "1.0",
+  "icons": { "16": "icon_16.png",
+             "48": "icon_48.png",
+            "128": "icon_128.png" },
+ 
+	"browser_action": {
+	  "default_icon": "icon.png",
+	  "default_title": "Sample Popup",    // optional; shown in tooltip
+	  "default_popup": "popup.html"
+	}, 
+	  "background": {"scripts": ["background.js"]},
+	
+	"commands": {
+	"_execute_browser_action": {
+	      "suggested_key": {
+	        "windows": "Ctrl+PageUp",
+	        "mac": "MacCtrl+PageUp"
+	      }
+	    },
+	 
+	 "test": {
+	       "suggested_key": {
+	         "default": "Ctrl+PageDown",
+	         "mac": "MacCtrl+PageDown"
+	       },
+	       "description": "Test alert function"
+	     }
+	 
+	}
+}
