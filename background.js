@@ -1,8 +1,28 @@
 chrome.commands.onCommand.addListener(function(command){
-  if (command == "test") {
-    //chrome.tabs.query({currentWindow: true, active: true}, function(tab){chrome.tabs.update(tab[0].id, {"url": "http://www.redhat.com"});})
-    //chrome.tabs.query({currentWindow: true, active: true}, function(tab){chrome.tabs.update(tab[0].id, {selected: False});});
-    chrome.tabs.query({currentWindow: true, active: true}, function(tab){alert('Tab Id: ' + tab[0].id);});
-    //chrome.tabs.create({"url": "http://www.gluster.org"});
+  if (command == "nexttab") {
+    // Copied from StackOverflow posting here:
+    // http://stackoverflow.com/questions/16276276/chrome-extension-select-next-tab
+    // First, get currently active tab
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+      if (tabs.length) {
+        var activeTab = tabs[0],
+        tabId = activeTab.id,
+        currentIndex = activeTab.index;
+
+        // Next, get number of tabs in the window, in order to allow cyclic next
+        chrome.tabs.query({currentWindow: true}, function (tabs) {
+          var numTabs = tabs.length;
+
+          // Finally, get the index of the tab to activate and activate it
+          chrome.tabs.query({currentWindow: true, index: (currentIndex+1) % numTabs}, function(tabs){
+            if (tabs.length) {
+              var tabToActivate = tabs[0],
+              tabToActivate_Id = tabToActivate.id;
+              chrome.tabs.update(tabToActivate_Id, {active: true});
+            }
+          });
+        });
+      }
+    });
   }
 });

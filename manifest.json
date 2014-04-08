@@ -24,7 +24,7 @@
       }
     },
 
-    "test": {
+    "nexttab": {
       "suggested_key": {
         "default": "Ctrl+PageDown",
         "mac": "MacCtrl+PageDown"
