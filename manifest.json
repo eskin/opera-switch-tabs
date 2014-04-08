@@ -9,19 +9,15 @@
             "128": "icon_128.png" },
 
   "permissions": ["tabs"],
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_title": "Sample Popup",    // optional; shown in tooltip
-    "default_popup": "popup.html"
-  },
   "background": {"scripts": ["background.js"]},
 
   "commands": {
-    "_execute_browser_action": {
+    "previoustab": {
       "suggested_key": {
         "windows": "Ctrl+PageUp",
         "mac": "MacCtrl+PageUp"
-      }
+      },
+    "description": "Switches to previous tab"
     },
 
     "nexttab": {
@@ -29,7 +25,7 @@
         "default": "Ctrl+PageDown",
         "mac": "MacCtrl+PageDown"
       },
-    "description": "Test alert function"
+    "description": "Switches to next tab"
     }
   }
 }
